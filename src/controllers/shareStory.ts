@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const addProviderData = async (req: Request, res: Response) => {
+const shareStory = async (req: Request, res: Response) => {
     const { publisher_name, author_name, story, createdAt } = req.body;
    
   
@@ -32,7 +32,12 @@ const addProviderData = async (req: Request, res: Response) => {
     } else {
       return storyData
         .save()
-        .then((StoryData) => res.status(201).json({"Message" : "Story shared Successfully", storyData}))
+        .then((storyData) => res.status(201).json({"Message" : "Story shared Successfully", storyData}))
         .catch((error) => res.status(500).json({ error }));
     }
   };
+
+  export default {
+    shareStory
+  };
+  
