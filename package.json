@@ -2,7 +2,7 @@
   "name": "backend-assessment",
   "version": "1.0.0",
   "description": "Minority Africa Advance Dev Assessment ",
-  "main": "build/src/app.js",
+  "main": "build/src/app.ts",
   "scripts": {
     "start": "nodemon src/app.ts",
     "lint": "eslint . --ext .ts"
