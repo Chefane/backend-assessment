@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 import DB_CONNECTION from "./config/connectDatabase";
 import * as mongoose from "mongoose";
 import { PORT } from "./config/utils";
