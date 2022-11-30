@@ -3,6 +3,7 @@ import DB_CONNECTION from "./config/connectDatabase";
 import * as mongoose from "mongoose";
 import { PORT } from "./config/utils";
 import { errorHandler } from "./middlewares/errorMiddleware";
+import routes from './routes/routes';
 import cors from "cors";
 
 const app = express();
@@ -25,6 +26,7 @@ mongoose
     res.send("Backend Assessment API running!");
    });
 
+   app.use(routes);
 
    app.use(errorHandler)
    app.listen(PORT, () => {
