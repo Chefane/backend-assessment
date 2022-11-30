@@ -10,7 +10,7 @@ import bcryptConfig from '../config/bycrypt';
 const userController = {
     create: async (req: Request, res: Response) => {
         try {
-            const { name, email, password: passwordBody } = req.body;
+            const { name, email, password: passwordBody, createdAt } = req.body;
 
             if (!name || !email || !passwordBody) return res.status(400).json({ message: "Missing data" });
 
@@ -25,6 +25,7 @@ const userController = {
                 name,
                 email,
                 password,
+                createdAt,
                 access_token
             }).save();
 
