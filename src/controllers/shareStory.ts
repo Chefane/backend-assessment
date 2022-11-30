@@ -39,7 +39,7 @@ const shareStory = async (req: Request, res: Response) => {
 
 const displayStory = async (req: Request, res: Response) => {
 
-  const storyInfo = await shareStorySchema.findOne(
+  const storyInfo = await shareStorySchema.find(
     { },
     { 'publisher_name': 1, 'author_name': 1,'story': 1, 
     'createdAt': 1,  _id: 1 }
@@ -51,8 +51,26 @@ const displayStory = async (req: Request, res: Response) => {
   }
 };
 
+const searchStory = async (req: Request, res: Response) => {
+  const id = req.params._id;
+
+  const storyInfo = await shareStorySchema.findOne(
+    {'_id':  id},
+    { 'publisher_name': 1, 'author_name': 1,'story': 1, 
+    'createdAt': 1 }
+  );
+  if (!storyInfo) {
+    res.status(404).send("Story does not exist");
+  } else {
+    res.status(200).send(storyInfo);
+  }
+};
+
+
+
 
 export default {
   shareStory,
-  displayStory
+  displayStory,
+  searchStory
 };
