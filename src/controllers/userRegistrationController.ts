@@ -50,9 +50,8 @@ const userController = {
             if (!isPasswordValid) return res.status(401).json({ message: "Email or Password is Wrong!" })
 
             return res.status(200).json({
-                _id: user._id,
+                message: "Login Successful",
                 name: user.name,
-                email: user.email,
                 access_token: user.access_token,
             });
 
@@ -61,25 +60,7 @@ const userController = {
         }
     },
 
-    select: async (req: Request, res: Response) => {
-        try {
-            const { id: _id } = req.params;
-            const noSelect = [
-                "-password",
-                "-email",
-                "-access_token",
-            ];
-            if (_id) {
-                const user = await User.findOne({ _id }, noSelect).exec();
-                return res.status(200).json(user);
-            } else {
-                const users = await User.find({}, noSelect).exec();
-                return res.status(200).json(users);
-            }
-        } catch (err) {
-            return res.status(500).json({ message: "Internal Server Error" });
-        }
-    },
+   
 };
 
 export default userController;
