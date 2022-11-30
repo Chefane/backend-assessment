@@ -66,11 +66,31 @@ const searchStory = async (req: Request, res: Response) => {
   }
 };
 
+const updatePublishedStory = async (req: Request, res: Response) => {
+  const id = req.params._id;
+
+  const { story } = req.body;
+
+  
+  const storyInfo = await shareStorySchema.findOneAndUpdate(
+    { '_id': id },
+    { 'story': story}
+  );
+
+  if (!storyInfo) {
+    res.status(404).send("Story Id does not exist");
+  } else {
+    res.status(200).send("Story updated Successfully");
+  }
+
+} 
+
 
 
 
 export default {
   shareStory,
   displayStory,
-  searchStory
+  searchStory,
+  updatePublishedStory
 };
