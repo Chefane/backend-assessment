@@ -1,4 +1,5 @@
 import { createUser, createUserBody, loginUser, LoginUserBody } from "./users";
+import {createStory, createStoryBody} from "./story";
 
 const apiDocumentation = {
     openapi: '3.0.1',
@@ -28,11 +29,14 @@ const apiDocumentation = {
     ],
     tags: [
       {
-        name: 'Roles',
+        name: 'Stories',
       },
       {
         name: 'Users',
       },
+      {
+        name: 'UserFeedback',
+      }
     ],
 
     paths: {
@@ -42,6 +46,9 @@ const apiDocumentation = {
         '/session': {
             post: loginUser,
           },
+          '/share-story': {
+            post: createStory
+          }
       },
       components: {
         securitySchemes: {
@@ -53,7 +60,8 @@ const apiDocumentation = {
         },
         schemas: {
           createUserBody,
-          LoginUserBody
+          LoginUserBody,
+          createStoryBody
         },
       },
   };
