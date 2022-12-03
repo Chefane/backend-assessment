@@ -1,5 +1,6 @@
 import { createUser, createUserBody, loginUser, LoginUserBody } from "./users";
 import {createStory, createStoryBody} from "./story";
+import { createFeedback, createFeedbackBody } from "./feedback";
 
 const apiDocumentation = {
     openapi: '3.0.1',
@@ -35,7 +36,7 @@ const apiDocumentation = {
         name: 'Users',
       },
       {
-        name: 'UserFeedback',
+        name: 'Subscriber Feedback',
       }
     ],
 
@@ -48,6 +49,9 @@ const apiDocumentation = {
           },
           '/share-story': {
             post: createStory
+          },
+          '/feedback': {
+            post: createFeedback
           }
       },
       components: {
@@ -61,7 +65,8 @@ const apiDocumentation = {
         schemas: {
           createUserBody,
           LoginUserBody,
-          createStoryBody
+          createStoryBody,
+          createFeedbackBody
         },
       },
   };
