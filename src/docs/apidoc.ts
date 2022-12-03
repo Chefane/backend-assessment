@@ -1,4 +1,4 @@
-import { createUser, createUserBody } from "./users";
+import { createUser, createUserBody, loginUser, LoginUserBody } from "./users";
 
 const apiDocumentation = {
     openapi: '3.0.1',
@@ -36,9 +36,12 @@ const apiDocumentation = {
     ],
 
     paths: {
-        users: {
+        '/users': {
           post: createUser,
         },
+        '/session': {
+            post: loginUser,
+          },
       },
       components: {
         securitySchemes: {
@@ -50,6 +53,7 @@ const apiDocumentation = {
         },
         schemas: {
           createUserBody,
+          LoginUserBody
         },
       },
   };
