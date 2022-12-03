@@ -4,6 +4,8 @@ import * as mongoose from "mongoose";
 import { PORT } from "./config/utils";
 import { errorHandler } from "./middlewares/errorMiddleware";
 import routes from './routes/routes';
+import swaggerUi from 'swagger-ui-express';
+import { apiDocumentation } from './docs/apidoc';
 import cors from "cors";
 
 const app = express();
@@ -27,6 +29,7 @@ mongoose
    });
 
    app.use(routes);
+   app.use('/documentation', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
 
    app.use(errorHandler)
    app.listen(PORT, () => {

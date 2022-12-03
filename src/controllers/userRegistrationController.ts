@@ -29,7 +29,7 @@ const userController = {
                 access_token
             }).save();
 
-            return res.status(201).json(newUser);
+            return res.status(201).json({message: "account created successfully", newUser});
 
         } catch (err) {
             return res.status(500).json({ message: "Internal Server Error" });
