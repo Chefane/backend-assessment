@@ -1,5 +1,5 @@
 import { createUser, createUserBody, loginUser, LoginUserBody } from "./users";
-import {createStory, createStoryBody} from "./story";
+import {createStory, createStoryBody, updateStoryBody, internalServerError, userNotFound, updateStory} from "./story";
 import { createFeedback, createFeedbackBody } from "./feedback";
 
 const apiDocumentation = {
@@ -50,9 +50,13 @@ const apiDocumentation = {
           '/share-story': {
             post: createStory
           },
+          '/update-published-story/:_id' :{
+            put: updateStory
+          },
           '/feedback': {
             post: createFeedback
           }
+          
       },
       components: {
         securitySchemes: {
@@ -66,7 +70,8 @@ const apiDocumentation = {
           createUserBody,
           LoginUserBody,
           createStoryBody,
-          createFeedbackBody
+          createFeedbackBody,
+          updateStoryBody
         },
       },
   };

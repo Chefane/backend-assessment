@@ -88,4 +88,88 @@ const createStory = {
     },
 };
 
-export {createStory, createStoryBody};
+const userNotFound = {
+    description: 'Resource not found',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            message: {
+              type: 'string',
+              example: 'User with id: "71675fcb655047cdc4955929" not found',
+            },
+          },
+        },
+      },
+    },
+  };
+
+  const internalServerError = {
+    description: 'Internal Server Error',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            message: {
+              type: 'string',
+              example: 'Internal Server Error',
+            },
+          },
+        },
+      },
+    },
+  };
+
+  const updateStory = {
+    tags: ['Stories'],
+    description: 'Update a story',
+    operationId: 'updateStory',
+    parameters: [
+      {
+        name: '_id',
+        in: 'path',
+        description: 'Story ID',
+        required: true,
+        type: 'string',
+      },
+    ],
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/updateStoryBody',
+          },
+        },
+      },
+      required: true,
+    },
+    responses: {
+      '200': {
+        description: 'Stroy updated  successfully!',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: createStoryBody,
+            },
+          },
+        },
+      },
+      '404': userNotFound,
+      '500': internalServerError,
+    },
+  };
+
+  const updateStoryBody = {
+    type: 'object',
+    properties: {
+      story: {
+        type: 'string',
+        example: 'updated published story',
+      }
+    },
+  };
+
+export {createStory, createStoryBody, updateStoryBody,internalServerError, userNotFound, updateStory };
