@@ -172,4 +172,60 @@ const userNotFound = {
     },
   };
 
-export {createStory, createStoryBody, updateStoryBody,internalServerError, userNotFound, updateStory };
+  const getStories = {
+    tags: ['Stories'],
+    description: 'Retrieve all the Stories',
+    operationId: 'getStories',
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    responses: {
+      '200': {
+        description: 'Displaying stories on the dashboard',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: createStoryBody,
+              },
+            },
+          },
+        },
+      },
+      '500': internalServerError,
+    },
+  };
+
+  const displayStories = {
+    tags: ['Users'],
+    description: 'Displaying stories after they are added',
+    operationId: 'displayStories',
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    responses: {
+      '200': {
+        description: 'Displaying stories from the database',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: createStoryBody,
+              },
+            },
+          },
+        },
+      },
+      '500': internalServerError,
+    },
+  };
+
+export {createStory, createStoryBody, updateStoryBody,internalServerError, userNotFound, updateStory, displayStories, getStories };

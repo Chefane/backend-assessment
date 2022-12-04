@@ -1,5 +1,5 @@
 import { createUser, createUserBody, loginUser, LoginUserBody } from "./users";
-import {createStory, createStoryBody, updateStoryBody, internalServerError, userNotFound, updateStory} from "./story";
+import {createStory, createStoryBody, updateStoryBody, updateStory, getStories, displayStories} from "./story";
 import { createFeedback, createFeedbackBody } from "./feedback";
 
 const apiDocumentation = {
@@ -55,6 +55,9 @@ const apiDocumentation = {
           },
           '/feedback': {
             post: createFeedback
+          }, 
+          '/display-story':{
+            get: getStories
           }
           
       },
@@ -71,7 +74,8 @@ const apiDocumentation = {
           LoginUserBody,
           createStoryBody,
           createFeedbackBody,
-          updateStoryBody
+          updateStoryBody,
+          displayStories
         },
       },
   };
